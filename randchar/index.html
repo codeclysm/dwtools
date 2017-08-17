@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Generate random character</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<p class="lead">Classe: <span id="class"></span></p>
+				<p class="lead">Virtù: <span id="virtue"></span></p>
+				<p class="lead">Vizio: <span id="vice"></span></p>
+				<p class="lead">Obiettivo: <span id="goal"></span></p>
+				<p class="lead">Motivazione: <span id="motive"></span></p>
+			</div>
+		</div>
+	</body>
+
+	<script>
+var classes = [
+	'Barbaro', 'Bardo', 'Chierico', 'Druido', 'Guerriero', 'Ladro', 'Mago', 'Paladino', 'Ranger', 'Rodomonte', 'Sciamano', 'Stregone',
+]
+
+var tokens = [
+	'Fare soldi',
+	'Fare sesso',
+	'Aiutare il prossimo',
+	'Fare gli scherzi con la telepatia',
+	'Cavalcare',
+	'Combattere',
+	'Trovare indizi',
+	'Riparare armi',
+	'Sedurre',
+	'Sposare chi si ama veramente',
+	'Vendicare le ingiustizie',
+	'Allevare pony',
+	'Guidare la rivolta degli oppressi',
+	'Mangiare di tutto',
+	'Scolpire statue viventi',
+	'Coltivare banane',
+	'Scrivere giochi',
+	'Aspettare',
+	'Spiare'
+]
+
+var classN = getRandomInt(0, classes.length);
+var classT = classes[classN];
+document.getElementById('class').innerHTML = classT;
+
+var virtueN = getRandomInt(0, tokens.length);
+var virtueT = tokens[virtueN];
+document.getElementById('virtue').innerHTML = virtueT;
+
+var viceN = getRandomInt(0, tokens.length);
+var viceT = tokens[viceN];
+document.getElementById('vice').innerHTML = viceT;
+
+var goalN = getRandomInt(0, tokens.length);
+var goalT = tokens[goalN];
+document.getElementById('goal').innerHTML = goalT;
+
+var motiveN = getRandomInt(0, tokens.length);
+var motiveT = tokens[motiveN];
+document.getElementById('motive').innerHTML = motiveT;
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+}
+
+	</script>
+
+</html>

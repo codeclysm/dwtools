@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Crea un villaggio</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron" id="app">
+				<!-- SELECTOR -->
+				<st-selector v-bind:steadings="steadings" v-bind:lang="lang" v-on:select="select($event)"></st-selector>
+
+				<h1>{{ lang("steading" + selSteading.type + "button") }}</h1>
+				<p>{{ lang("steading" + selSteading.type + "text") }}</p>
+
+				<!-- Choices -->
+				<fieldset class="form-group">
+					<legend>{{ selSteading.optText }}</legend>
+					<div class="form-check" v-for="(opt, index) in selSteading.options" >
+						<label class="form-check-label">
+							<input type="radio"
+								   v-on:change="choose(index)"
+								   class="form-check-input"
+								   name="selOption"
+								   :id="'selOption' + index"
+								   :value="index">
+							{{ lang("option" + selSteading.type + index) }}
+						</label>
+					</div>
+				</fieldset>
+
+				{{ selSteading }}
+
+				<!-- Render -->
+				<st-render v-bind:steading="selSteading" v-bind:lang="lang"></st-render>
+<!--
+
+
+				<div class="form-group">
+					<label for="resource">Risorsa</label>
+					<input type="text" class="form-control" id="resource" placeholder="una spezia, un minerale, pesce, uva">
+				</div>
+
+
+				<div class="form-group">
+					<label for="resource">Risorsa</label>
+					<input type="text" class="form-control" id="resource" placeholder="una spezia, un minerale, pesce, uva">
+				</div>
+
+				<div class="form-group">
+					<label for="oath">Giuramento verso</label>
+					<input type="text" class="form-control" id="oath" placeholder="un'altro insediamento">
+				</div>
+
+				<hr>
+
+				<div class="form-group">
+					<textarea class="form-control" rows="10">
+Prosperità: Povero - In vendita c'è solo lo stresso necessario
+Popolazione: Stabile - La popolazione è in linea
+Difese: Milizia
+Risorsa: ???
+Giuramento:
+					</textarea>
+				</div> -->
+			</div>
+		</div>
+		<script src="https://unpkg.com/vue"></script>
+		<script src="it.js"></script>
+		<script src="script.js"></script>
+
+	</body>
+</html>

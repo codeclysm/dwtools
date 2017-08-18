@@ -180,10 +180,13 @@ var Steading = function (type) {
 
 var Selector = {
 	props: ['steadings', 'lang'],
-	template: '<div><button class="btn btn-primary" v-for="(st, index) in steadings" v-on:click="select(index)" > {{ lang("steading" + st.type + "button") }}</button><hr></div>',
+	template: '<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary"><div class="collapse navbar-collapse"><ul class="navbar-nav mr-auto"><li class="nav-item" v-for="(st, index) in steadings"><a href="#" class="nav-link" v-on:click="select(index)">{{ lang("steading" + st.type + "button") }}</a></li></ul><ul class="navbar-nav"><li class="nav-item"><a href="#" class="nav-link" v-on:click="language(\'en\')">English</a></li><a href="#" class="nav-link" v-on:click="language(\'en\')">Italian</a></li></ul></div></nav>',
 	methods: {
 		select: function (index) {
 			this.$emit('select', index);
+		},
+		language: function (lang) {
+			this.$emit('language', lang)
 		}
 	}
 }
@@ -199,7 +202,7 @@ var Render = {
 			out += _('population') + ':\t';
 			out += _('population'+ st.current.population) + ' - ';
 			out += _('population'+ st.current.population + 'long') + '\n';
-			out += _('defenses') + ':\t\t';
+			out += _('defenses') + ':\t';
 			out += _('defenses'+ st.current.defenses) + ' - ';
 			out += _('defenses'+ st.current.defenses + 'long') + '\n';
 			out += '\n';
@@ -233,12 +236,22 @@ steadings.push(new Steading('town'));
 steadings.push(new Steading('keep'));
 steadings.push(new Steading('city'));
 
+var locale = getParameterByName('lang');
+var lang;
+if (!locale || locale === 'en') {
+	lang = en;
+}
+if (locale === 'it') {
+	lang = it;
+}
+
 var vm = new Vue({
 	el: "#app",
 	data: {
-		lang: it,
+		ready: false,
+		lang: lang,
 		steadings: steadings,
-		selSteading: steadings[2]
+		selSteading: steadings[0]
 	},
 	components: {
 		'st-selector': Selector,
@@ -250,6 +263,16 @@ var vm = new Vue({
 	methods: {
 		select: function (index) {
 			this.selSteading = this.steadings[index];
+		},
+		language: function (lang) {
+			if (lang === 'it') {
+				this.lang = it;
+				document.title = this.lang('title');
+			}
+			if (lang === 'en') {
+				this.lang = en;
+				document.title = this.lang('title');
+			}
 		},
 		choose: function (type, index) {
 			if (type === 'option') {
@@ -277,4 +300,14 @@ function splice(list, el) {
 	if (index > -1) {
 		list.splice(index, 1);
 	}
+}
+
+function getParameterByName(name, url) {
+	if (!url) url = window.location.href;
+	name = name.replace(/[\[\]]/g, "\\$&");
+	var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, " "));
 }

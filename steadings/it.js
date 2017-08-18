@@ -2,7 +2,7 @@ var it = function (value) {
 	var labels = {
 		title: 'Crea un insediamento',
 
-		prosperity: 'Prosperità',
+		prosperity: 'Prosperità\t',
 		prosperity0: 'Misera',
 		prosperity0long: 'Niente in vendita, nessuno ha più dell’indispensabile (ed è fortunato se ce l’ha). La manodopera comune è economica.',
 		prosperity1: 'Povera',
@@ -14,7 +14,7 @@ var it = function (value) {
 		prosperity4: 'Ricca',
 		prosperity4long: 'Oggetti ordinari e anche più, se sai dove trovarli. Manodopera specializzata disponibile, ma a caro prezzo.',
 
-		population: 'Popolazione',
+		population: 'Popolazione\t',
 		population0: 'Esodo',
 		population0long: 'L’insediamento ha perso la sua popolazione ed è sul punto di scomparire.',
 		population1: 'In diminuzione',
@@ -26,7 +26,7 @@ var it = function (value) {
 		population4: 'Forte espansione',
 		population4long: 'Le risorse scarseggiano mentre si cerca di accontentare tutta questa gente.',
 
-		defenses: 'Difese',
+		defenses: 'Difese\t\t',
 		defenses0: 'Nessuna',
 		defenses0long: 'Clave, torce, attrezzi da contadino.',
 		defenses1: 'Milizia',

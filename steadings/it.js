@@ -1,5 +1,7 @@
 var it = function (value) {
 	var labels = {
+		title: 'Crea un insediamento',
+
 		prosperity: 'Prosperità',
 		prosperity0: 'Misera',
 		prosperity0long: 'Niente in vendita, nessuno ha più dell’indispensabile (ed è fortunato se ce l’ha). La manodopera comune è economica.',
@@ -43,62 +45,168 @@ var it = function (value) {
 		steadingvillage: 'Villaggio',
 		steadingvillagebutton: 'Crea un villaggio',
 		steadingvillagetext: 'I villaggi sono gli insediamenti più piccoli. Sono solitamente isolati, lontano dalle strade più grandi. Se sono fortunati possono radunare degli uomini per difendersi, ma solitamente si tratta di villici che impugnano torce e forconi. Un villaggio si trova vicino a qualche risorsa facilmente sfruttabile: terra fertile, abbondanza di pesci, una vecchia foresta, una miniera. Potrebbe esserci un negozio di sorta ma è più probabile che gli abitanti commercino direttamente tra loro. I soldi scarseggiano.',
+		steadingvillagetext2: 'Normalmente un villaggio ha Povera, Stabile, Milizia, Risorsa e ha un Giuramento a un insediamento a tua scelta.',
+		steadingtown: 'Borgo',
+		steadingtownbutton: 'Crea un borgo',
+		steadingtowntext: 'I borghi hanno un centinaio di abitanti. Sono quel genere di insediamento che sorge attorno a un mulino, una stazione commerciale o una locanda e solitamente hanno campi, fattorie e qualche tipo di bestiame. Potrebbero avere una milizia stabile di contadini abbastanza forti da impugnare una spada o tirare con l’arco. Nei borghi si vendono i beni fondamentali, ma nessun articolo inconsueto. Solitamente si concentrano su uno o due prodotti locali e commerciano con i viaggiatori.',
+		steadingtowntext2: 'Normalmente un borgo ha Moderata, Stabile, Sorveglianti e Commercio (due a tua scelta). ',
+		steadingkeep: 'Fortezza',
+		steadingkeepbutton: 'Crea una fortezza',
+		steadingkeeptext: 'Una fortezza è un insediamento costruito specificamente per la difesa, a volte di un luogo di particolare importanza come il delta di un fiume o una miniera ricca d’oro. Le fortezze si trovano nei luoghi di frontiera della civiltà. Gli abitanti sono abituati ai pericoli che tutti i giorni incombono sulla strada. Le fortezze spesso non hanno molto oltre alle loro provviste, che ottengono commerciando con i villaggi vicini, ma hanno quasi sicuramente armi e armature e magari un raro oggetto magico trovato nelle terre selvagge circostanti.',
+		steadingkeeptext2: 'Normalmente una fortezza ha Povera, In Diminuzione, Guardia, Scarsità (provviste), Commercio (un luogo fornito di provviste), Giuramento (a tua scelta).',
+		steadingcity: 'Città',
+		steadingcitybutton: 'Crea una città',
+		steadingcitytext: 'Dai trafficati centri di commercio alle metropoli in espansione, le città rappresentano il più grande tipo di insediamento in Dungeon World. Questi sono luoghi dove si può incontrare gente di ogni razza e tipo. Spesso le città si trovano al crocevia di diverse rotte commerciali o in un luogo di grande importanza religiosa. Spesso non producono da sole le materie prime per il commercio, appoggiandosi ai rifornimenti dei villaggi vicini per avere cibo e risorse, ma avranno sempre prodotti d’artigianato e cose ben più bizzarre in vendita per coloro che le cercano.',
+		steadingcitytext2: 'Normalmente una città ha Moderata, Stabile, Guardia, Mercato e Gilda (una a tua scelta). Ha anche Giuramenti con almeno due altri insediamenti, solitamente un villaggio e una fortezza.',
 
-		optionvillage0: 'Il villaggio è in un luogo naturalmente difendibile',
-		optionvillage1: 'Il villaggio ha abbondanti risorse su cui appoggiarsi',
-		optionvillage2: 'Il villaggio è sotto la protezione di un altro insediamento',
-		optionvillage3: 'Il villaggio è situato su una strada importante',
-		optionvillage4: 'Il villaggio è costruito attorno alla torre di un mago',
-		optionvillage5: 'Il villaggio ha abbondanti risorse su cui appoggiarsi',
-		optionvillage6: 'Il villaggio è costruito su un sito d’importanza religiosa',
+		optionsvillage: 'Se il villaggio è parte di un regno o impero scegli una opzione',
+		optionvillage0: 'Il villaggio è in un luogo naturalmente difendibile: Sicuro, -Difese',
+		optionvillage1: 'Il villaggio ha abbondanti risorse su cui appoggiarsi: +Prosperità, Risorsa, Ostilità',
+		optionvillage2: 'Il villaggio è sotto la protezione di un altro insediamento: Giuramento (quell’insediamento), +Difese',
+		optionvillage3: 'Il villaggio è situato su una strada importante: Commercio, +Prosperità',
+		optionvillage4: 'Il villaggio è costruito attorno alla torre di un mago: Personalità (il mago), Disastro (creature arcane)',
+		optionvillage5: 'Il villaggio è costruito su un sito d’importanza religiosa: Divino',
+		optionvillage6: 'Il villaggio è costruito su un sito d’importanza religiosa: Storico',
+
+		optionstown: 'Se il borgo è segnato come Commercio di un altro insediamento scegli un’opzione',
+		optiontown0: 'Il borgo è in espansione: Forte Espansione, Anarchico',
+		optiontown1: 'Il borgo sta su un crocevia: Mercato, +Prosperità',
+		optiontown2: 'Il borgo è difeso da un altro insediamento: Giuramento (quell’insediamento), +Difese',
+		optiontown3: 'Il borgo è costruito attorno a una chiesa: Potere (Divino)',
+		optiontown4: 'Il borgo è concentrato su un mestiere: Artigianato (a tua scelta), Risorsa (qualcosa di necessario per quel mestiere)',
+		optiontown5: 'Il borgo è costruito attorno a una stazione militare: +Difese',
+
+		optionskeep: 'Se la fortezza ha accolto il giuramento di fedeltà di almeno un insediamento scegli un’opzione',
+		optionkeep0: 'La fortezza appartiene a una famiglia nobile: +Prosperità, Potere (Politico)',
+		optionkeep1: 'La fortezza è amministrata da un esperto condottiero: Personalità (il condottiero), +Difese',
+		optionkeep2: 'La fortezza è a guardia di una rotta commerciale: +Prosperità, Gilda (commerciale)',
+		optionkeep3: 'La fortezza è usata per addestrare truppe speciali: Arcana, -Popolazione',
+		optionkeep4: 'La fortezza è circondata da terreno fertile: rimuovi Scarsità (provviste)',
+		optionkeep5: 'La fortezza è situata su un confine: +Difese, Ostilità (insediamento dall’altra parte del confine)',
+
+		optionscity: 'Se la città commercia con almeno un insediamento e ne ha almeno un altro che le è fedele scegli un’opzione',
+		optioncity0: 'La città ha delle difese permanenti, come mura: +Difese, Giuramento (a tua scelta)',
+		optioncity1: 'La città è governata da un solo individuo: Personalità (il sovrano), Potere (Politico)',
+		optioncity2: 'La città è cosmopolita: Elfico o Nanico, o entrambi',
+		optioncity3: 'La città è una capitale commerciale: Commercio (qualunque insediamento vicino), +Prosperità',
+		optioncity4: 'La città è antica, costruita sulle sue stesse rovine: Storico (a tua scelta), Divino',
+		optioncity5: 'La città è un centro culturale e dell’istruzione: Arcano, Artigianato (a tua scelta), Potere (Arcano)',
+
+		problems: 'Scegli un problema',
+		problemvillage0: 'Il villaggio è posto su terra arida o incoltivabile: Scarsità (Cibo)',
+		problemvillage1: 'Il villaggio è dedicato a una divinità: Religione (quella divinità), Ostilità (un insediamento di un’altra divinità)',
+		problemvillage2: 'Il villaggio ha recentemente combattuto una battaglia: -Popolazione',
+		problemvillage3: 'Il villaggio ha recentemente combattuto una battaglia fino alla fine: -Popolazione, -Prosperità',
+		problemvillage4: 'Il villaggio ha recentemente combattuto una battaglia e ha perso: -Popolazione, -Difese',
+		problemvillage5: 'Il villaggio ha recentemente combattuto una battaglia fino alla fine e ha perso: -Popolazione, -Prosperità, -Difese',
+		problemvillage6: 'Il villaggio ha un problema coi mostri: Flagello (quei mostri), Scarsità (avventurieri)',
+		problemvillage7: 'Il villaggio ha inglobato un altro villaggio: +Popolazione, Anarchico',
+		problemvillage8: 'Il villaggio è nanico, lontano e maldisposto: -Prosperità, Nanico',
+		problemvillage9: 'Il villaggio è elfico, lontano e maldisposto: -Prosperità, Elfico',
+
+		problemtown0: 'Il borgo si è ingrandito troppo e consuma eccessivamente una risorsa (come grano, legno o pietra): Scarsità (quella risorsa), Commercio (un villaggio o borgo con quella risorsa)',
+		problemtown1: 'Il borgo offre protezione ad altri: Giuramento (a tua scelta), -Difese',
+		problemtown2: 'Il borgo è famoso per un fuorilegge che si vocifera viva lì: Personalità (il fuorilegge), Ostilità (il luogo dove furono commessi i crimini)',
+		problemtown3: 'Il borgo ha monopolizzato il commercio di un bene o un servizio: Esotico (il bene o il servizio), Ostilità (un insediamento ambizioso)',
+		problemtown4: 'Il borgo è afflitto da un morbo: -Popolazione',
+		problemtown5: 'Il borgo è un popolare luogo d’incontro: +Popolazione, Anarchico',
+
+		problemkeep0: 'La fortezza è costruita in una posizione naturalmente difendibile: Sicuro, -Popolazione',
+		problemkeep1: 'La fortezza è stata conquistata a un’altra nazione: Ostilità (insediamenti di quella nazione)',
+		problemkeep2: 'La fortezza è un rifugio sicuro per i briganti: Anarchico',
+		problemkeep3: 'La fortezza fu costruita per difendersi da una particolare minaccia: Flagello (quella minaccia)',
+		problemkeep4: 'La fortezza ha visto un\'orribile guerra: Storico (battaglia), Flagello (spiriti inquieti)',
+		problemkeep5: 'Alla fortezza vengono inviati gli uomini peggiori: Scarsità (reclute abili)',
+
+		problemcity0: 'La città è cresciuta più di quanto possa sostenersi: +Popolazione, Scarsità (cibo)',
+		problemcity1: 'La città progetta di rivendicare i territori vicini: Ostilità (insediamenti vicini), +Difese',
+		problemcity2: 'La città è governata da una teocrazia: -Difese, Potere (Divino)',
+		problemcity3: 'La città è governata dalla gente: -Difese, +Popolazione',
+		problemcity4: 'La città è dotata di difese sovrannaturali: +Difese, Flagello (creature sovrannaturali correlate)',
+		problemcity5: 'La città è situata sopra un luogo di potere: Arcano, Personalità (chiunque sorvegli il luogo di potere), Flagello (creature arcane)',
+
+		safe: 'Sicuro',
+		safetext: 'I problemi esterni non arrivano fino a qui a meno che non ce li portino i giocatori. È idilliaco e probabilmente nascosto. Se l’insediamento perde o diminuisce un’etichetta benefica rimuovi sicuro al suo posto.',
+
+		religion: 'Religione',
+		religiondeity: 'Religione (quella divinità)',
+		religiontext: 'La divinità indicata è venerata qui',
+
+		exotic: 'Esotico',
+		exotictext: 'Ci sono beni e servizi disponibili che non sono disponibili in nessun altro luogo vicino. Elencali.',
+
+		resource: 'Risorsa',
+		resourcecraft: 'Risorsa (necessaria per l\'artigianato',
+		resourcetext: 'L’insediamento ha facile accesso alla risorsa elencata (ad esempio una spezia, un minerale, pesce o uva). Tale risorsa è sensibilmente più economica.',
+
+		need: 'Scarsità',
+		needfood: 'Scarsità (cibo)',
+		needresource: 'Scarsità (risorsa)',
+		needadventurers: 'Scarsità (avventurieri)',
+		needsupplies: 'Scarsità (provviste)',
+		needrecruits: 'Scarsità (reclute abili)',
+		needtext: 'L’insediamento ha un forte o prolungato bisogno della risorsa indicata. Tale risorsa è sensibilmente più costosa.',
+
+		oath: 'Giuramento',
+		oathtext: 'L’insediamento ha fatto un giuramento agli insediamenti indicati. Questi giuramenti sono generalmente di fedeltà o appoggio, ma possono essere più specifici.',
+
+		trade: 'Commercio',
+		traderesource: 'Commercio (risorsa)',
+		tradesupplies: 'Commercio (provviste)',
+		tradetext: 'L’insediamento commercia regolarmente con gli insediamenti indicati.',
+
+		market: 'Mercato',
+		markettext: 'Tutti vengono qui per commerciare. Gli oggetti reperibili potrebbero, nei giorni di mercato, essere più reperibili di ciò che è normale per il livello di prosperità. Prendi +1 a fare rifornimento.',
+
+		enmity: 'Ostilità',
+		enmityotherdeity: 'Ostilità (un insediamento di un’altra divinità)',
+		enmitytext: ' L’insediamento porta rancore verso gli insediamenti indicati.',
+
+		history: 'Storico',
+		historybattle: 'Storico (battaglia)',
+		historytext: 'Qualcosa di importante è successo qui, scegli un’opzione e aggiungi dettagli o inventatela tu: battaglia, miracolo, mito, storia d’amore, tragedia.',
+
+		arcane: 'Arcano',
+		arcanetext: 'Qualcuno in città può lanciare incantesimi arcani a pagamento. Ciò tende ad attirare altri incantatori. +1 a reclutare quando spargi la voce che stai cercando un adepto.',
+
+		divine: 'Divino',
+		divinetext: 'C’è una forte presenza religiosa, forse una cattedrale o un monastero. Possono guarire e forse anche resuscitare i morti in cambio di una donazione o del compimento di una missione. Prendi +1 per reclutare sacerdoti qui.',
+
+		guild: 'Gilda',
+		guildtrade: 'Gilda (commerciale)',
+		guildtext: 'La gilda indicata ha una presenza importante qui (e solitamente una considerevole influenza). Se la gilda è strettamente associata a un tipo di gregario, prendi +1 per reclutare quel tipo di gregario.',
+
+		personage: 'Personalità',
+		personagewizard: 'Personalità (il mago)',
+		personageoutlaw: 'Personalità (il fuorilegge)',
+		personagecommander: 'Personalità (il condottiero)',
+		personageruler: 'Personalità (il sovrano)',
+		personagetext: 'C’è una persona degna di nota che abita qui. Dagli un nome e spiega perché è degna di nota.',
+
+		dwarven: 'Nanico',
+		dwarventext: 'L’insediamento è composto principalmente o completamente da nani. I prodotti nanici sono più diffusi e meno costosi del solito',
+
+		elven: 'Elfico',
+		elventext: 'L’insediamento è composto principalmente o completamente da elfi. I prodotti elfici sono più diffusi e meno costosi del solito.',
+
+		craft: 'Artigianato',
+		crafttext: 'L’insediamento è noto per la sue eccellenza nell’arte indicata. I prodotti di artigianato di quel tipo sono più facilmente reperibili o di qualità più alta qui che altrove.',
+
+		lawless: 'Anarchico',
+		lawlesstext: 'Il crimine dilaga, le autorità sono deboli.',
+
+		blight: 'Flagello',
+		blightarcanecreatures: 'Flagello (creature arcane)',
+		blightmonster: 'Flagello (quei mostri)',
+		blightspirits: 'Flagello (spiriti inquieti)',
+		blighttext: 'L’insediamento ha un problema ricorrente, di solito un tipo di mostro.',
+
+		power: 'Potere',
+		powerdivine: 'Potere (Divino)',
+		powerpolitical: 'Potere (Politico)',
+		powerarcane: 'Potere (Arcano)',
+		powertext: 'L’insediamento ha un’influenza di qualche tipo. Solitamente politica, divina o arcana.',
 	}
 
 	return labels[value] || '';
 }
-
-// it.labels = {
-
-// }
-
-// it.prosperityTags = [
-// 	{label: 'Misera', text: ''},
-// 	{label: 'Povera', text: ''},
-// 	{label: 'Moderata', text: 'La maggior parte degli oggetti ordinari è reperibile. Si può trovare manodopera specializzata.'},
-// 	{label: 'Benestante', text: 'Qualunque oggetto ordinario si trova in vendita. Si possono trovare i più importanti tipi di manodopera specializzata, ma la domanda per il loro lavoro è alta.'},
-// 	{label: 'Ricca', text: 'Oggetti ordinari e anche più, se sai dove trovarli. Manodopera specializzata disponibile, ma a caro prezzo.'}
-// ]
-
-// it.steadings = [];
-
-// // Village
-// it.steadings.push({
-// 	name: 'Villaggio',
-// 	button: 'Crea un Villaggio',
-// 	text: 'I villaggi sono gli insediamenti più piccoli. Sono solitamente isolati, lontano dalle strade più grandi. Se sono fortunati possono radunare degli uomini per difendersi, ma solitamente si tratta di villici che impugnano torce e forconi. Un villaggio si trova vicino a qualche risorsa facilmente sfruttabile: terra fertile, abbondanza di pesci, una vecchia foresta, una miniera. Potrebbe esserci un negozio di sorta ma è più probabile che gli abitanti commercino direttamente tra loro. I soldi scarseggiano.',
-// 	options: [
-// 		{
-// 			label: 'Il villaggio è in un luogo naturalmente difendibile',
-// 			rules: ['+sicuro', '-defense']
-// 		}
-// 	],
-// 	initial: {
-// 		prosperity: 1,
-// 		population: 2,
-// 		defenses: 1
-// 	},
-// 	current: {
-// 		prosperity: 1,
-// 		population: 2,
-// 		defenses: 1
-// 	}
-// });
-
-// // Town
-// it.steadings.push({
-// 	name: 'Borgo',
-// 	button: 'Crea un Borgo',
-// 	text: 'I borghi hanno un centinaio di abitanti. Sono quel genere di insediamento che sorge attorno a un mulino, una stazione commerciale o una locanda e solitamente hanno campi, fattorie e qualche tipo di bestiame. Potrebbero avere una milizia stabile di contadini abbastanza forti da impugnare una spada o tirare con l’arco. Nei borghi si vendono i beni fondamentali, ma nessun articolo inconsueto. Solitamente si concentrano su uno o due prodotti locali e commerciano con i viaggiatori.',
-// 	options: [
-
-// 	]
-// });
